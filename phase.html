@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Catalog with Filter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f9f9f9;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .filter-container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .filter-container select {
+      padding: 8px 12px;
+      font-size: 16px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .product-name {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .product-category {
+      color: gray;
+      font-size: 14px;
+    }
+
+    .price {
+      color: #2a9d8f;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Product Catalog</h1>
+
+  <div class="filter-container">
+    <label for="categoryFilter"><strong>Filter by category:</strong></label>
+    <select id="categoryFilter">
+      <option value="all">All</option>
+      <option value="electronics">Electronics</option>
+      <option value="clothing">Clothing</option>
+      <option value="books">Books</option>
+    </select>
+  </div>
+
+  <div class="product-grid" id="productGrid">
+    <div class="product-card" data-category="electronics">
+      <img src="download.jpg" alt="Laptop">
+      <div class="product-name">Laptop</div>
+      <div class="product-category">Electronics</div>
+      <div class="price">$999</div>
+    </div>
+
+    <div class="product-card" data-category="clothing">
+      <img src="tshirt.webp" alt="T-Shirt">
+      <div class="product-name">T-Shirt</div>
+      <div class="product-category">Clothing</div>
+      <div class="price">$25</div>
+    </div>
+
+    <div class="product-card" data-category="books">
+      <img src="book.jpg" alt="Book">
+      <div class="product-name">The Great Book</div>
+      <div class="product-category">Books</div>
+      <div class="price">$15</div>
+    </div>
+
+    <div class="product-card" data-category="electronics">
+      <img src="headphone.webp" alt="Headphones">
+      <div class="product-name">Headphones</div>
+      <div class="product-category">Electronics</div>
+      <div class="price">$120</div>
+    </div>
+
+    <div class="product-card" data-category="clothing">
+      <img src="jacket.jpg" alt="Jacket">
+      <div class="product-name">Jacket</div>
+      <div class="product-category">Clothing</div>
+      <div class="price">$80</div>
+    </div>
+  </div>
+
+  <script>
+    const filterSelect = document.getElementById('categoryFilter');
+    const productCards = document.querySelectorAll('.product-card');
+
+    filterSelect.addEventListener('change', () => {
+      const selectedCategory = filterSelect.value;
+
+      productCards.forEach(card => {
+        const category = card.getAttribute('data-category');
+
+        if (selectedCategory === 'all' || category === selectedCategory) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
